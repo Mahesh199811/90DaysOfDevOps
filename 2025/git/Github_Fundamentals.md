@@ -121,7 +121,8 @@
     - Shows the differences between files in the working directory and the index.
     ```bash
     git diff
-    ```
+
+
 ## Here how i created a shell script and use git commands
 
 
