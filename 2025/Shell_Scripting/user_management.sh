@@ -14,9 +14,11 @@ function show_help() {
     echo "  -c, --create    Create a new user account"
     echo "  -d, --delete    Delete an existing user account"
     echo "  -r, --reset     Reset the password of an existing user account"
-    echo "  -l, --list      List all user accounts"
+    echo "  -l, --list      List all user accounts with detailed information"
+    echo "  -m, --modify    Modify user account properties"
     echo "  -h, --help      Display this help message"
 }
+
 
 # Function to create a new user account
 function create_user() {
@@ -57,8 +59,70 @@ function reset_password() {
 
 # Function to list all user accounts
 function list_users() {
-    echo "User accounts on the system:"
-    awk -F: '{ print $1, $3 }' /etc/passwd
+    echo "Detailed User Account Information:"
+    printf "%-20s %-10s %-10s %-30s %-20s\n" "USERNAME" "USER ID" "GROUP ID" "HOME DIRECTORY" "SHELL"
+    echo "--------------------------------------------------------------------------------"
+    while IFS=: read -r username _ uid gid _ home shell; do
+        # Check if uid is a valid number and in the desired range
+        if [[ "$uid" =~ ^[0-9]+$ ]] && [[ $uid -ge 1000 && $uid -ne 65534 ]]; then
+            printf "%-20s %-10s %-10s %-30s %-20s\n" "$username" "$uid" "$gid" "$home" "$shell"
+        fi
+    done < /etc/passwd
+}
+
+
+function modify_user() {
+    read -p "Enter username to modify: " username
+    if ! id "$username" &>/dev/null; then
+        echo "Error: User '$username' does not exist."
+        exit 1
+    fi
+
+    echo "What would you like to modify?"
+    echo "1. Change username"
+    echo "2. Change user ID"
+    echo "3. Change primary group"
+    echo "4. Change home directory"
+    echo "5. Change shell"
+    read -p "Enter your choice (1-5): " choice
+
+    case $choice in
+        1)  read -p "Enter new username: " new_username
+            if id "$new_username" &>/dev/null; then
+                echo "Error: User '$new_username' already exists."
+                exit 1
+            fi
+            sudo usermod -l "$new_username" "$username"
+            echo "Username changed successfully to '$new_username'"
+            ;;
+        2)  read -p "Enter new user ID: " new_uid
+            sudo usermod -u "$new_uid" "$username"
+            echo "User ID changed successfully"
+            ;;
+        3)  read -p "Enter new primary group: " new_group
+            if ! getent group "$new_group" &>/dev/null; then
+                echo "Error: Group '$new_group' does not exist."
+                exit 1
+            fi
+            sudo usermod -g "$new_group" "$username"
+            echo "Primary group changed successfully"
+            ;;
+        4)  read -p "Enter new home directory: " new_home
+            sudo usermod -d "$new_home" -m "$username"
+            echo "Home directory changed successfully"
+            ;;
+        5)  read -p "Enter new shell path: " new_shell
+            if [ ! -f "$new_shell" ]; then
+                echo "Error: Shell '$new_shell' does not exist."
+                exit 1
+            fi
+            sudo usermod -s "$new_shell" "$username"
+            echo "Shell changed successfully"
+            ;;
+        *)  echo "Invalid choice"
+            exit 1
+            ;;
+    esac
 }
 
 # Main script logic
@@ -80,6 +144,9 @@ case "$1" in
     -l|--list)
         list_users
         ;;
+    -m|--modify)
+        modify_user
+        ;;
     -h|--help)
         show_help
         ;;
@@ -89,3 +156,4 @@ case "$1" in
         exit 1
         ;;
 esac
+
