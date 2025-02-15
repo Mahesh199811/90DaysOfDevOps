@@ -1,0 +1,84 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="800" height="500" fill="#f8f9fa"/>
+    
+    <!-- Title -->
+    <text x="400" y="40" text-anchor="middle" font-size="24" font-weight="bold">Virtualization vs Containerization</text>
+    
+    <!-- Virtualization Architecture (Left Side) -->
+    <text x="200" y="80" text-anchor="middle" font-size="20" font-weight="bold">Virtualization</text>
+    
+    <!-- Infrastructure Hardware -->
+    <rect x="50" y="400" width="300" height="40" fill="#d4d4d4" stroke="#000"/>
+    <text x="200" y="425" text-anchor="middle">Infrastructure Hardware</text>
+    
+    <!-- Host Operating System -->
+    <rect x="50" y="350" width="300" height="40" fill="#b8daff" stroke="#000"/>
+    <text x="200" y="375" text-anchor="middle">Host Operating System</text>
+    
+    <!-- Hypervisor -->
+    <rect x="50" y="300" width="300" height="40" fill="#ffeeba" stroke="#000"/>
+    <text x="200" y="325" text-anchor="middle">Hypervisor</text>
+    
+    <!-- VM 1 -->
+    <rect x="60" y="160" width="85" height="130" fill="#c3e6cb" stroke="#000"/>
+    <text x="102" y="180" text-anchor="middle" font-size="12">VM 1</text>
+    <rect x="65" y="190" width="75" height="30" fill="#fff" stroke="#000"/>
+    <text x="102" y="210" text-anchor="middle" font-size="10">App 1</text>
+    <rect x="65" y="230" width="75" height="50" fill="#d7d7d7" stroke="#000"/>
+    <text x="102" y="260" text-anchor="middle" font-size="10">Guest OS</text>
+    
+    <!-- VM 2 -->
+    <rect x="160" y="160" width="85" height="130" fill="#c3e6cb" stroke="#000"/>
+    <text x="202" y="180" text-anchor="middle" font-size="12">VM 2</text>
+    <rect x="165" y="190" width="75" height="30" fill="#fff" stroke="#000"/>
+    <text x="202" y="210" text-anchor="middle" font-size="10">App 2</text>
+    <rect x="165" y="230" width="75" height="50" fill="#d7d7d7" stroke="#000"/>
+    <text x="202" y="260" text-anchor="middle" font-size="10">Guest OS</text>
+    
+    <!-- VM 3 -->
+    <rect x="260" y="160" width="85" height="130" fill="#c3e6cb" stroke="#000"/>
+    <text x="302" y="180" text-anchor="middle" font-size="12">VM 3</text>
+    <rect x="265" y="190" width="75" height="30" fill="#fff" stroke="#000"/>
+    <text x="302" y="210" text-anchor="middle" font-size="10">App 3</text>
+    <rect x="265" y="230" width="75" height="50" fill="#d7d7d7" stroke="#000"/>
+    <text x="302" y="260" text-anchor="middle" font-size="10">Guest OS</text>
+    
+    <!-- Containerization Architecture (Right Side) -->
+    <text x="600" y="80" text-anchor="middle" font-size="20" font-weight="bold">Containerization</text>
+    
+    <!-- Infrastructure Hardware -->
+    <rect x="450" y="400" width="300" height="40" fill="#d4d4d4" stroke="#000"/>
+    <text x="600" y="425" text-anchor="middle">Infrastructure Hardware</text>
+    
+    <!-- Host Operating System -->
+    <rect x="450" y="350" width="300" height="40" fill="#b8daff" stroke="#000"/>
+    <text x="600" y="375" text-anchor="middle">Host Operating System</text>
+    
+    <!-- Docker Engine -->
+    <rect x="450" y="300" width="300" height="40" fill="#ffeeba" stroke="#000"/>
+    <text x="600" y="325" text-anchor="middle">Docker Engine</text>
+    
+    <!-- Container 1 -->
+    <rect x="460" y="220" width="85" height="70" fill="#c3e6cb" stroke="#000"/>
+    <text x="502" y="240" text-anchor="middle" font-size="12">Container 1</text>
+    <rect x="465" y="250" width="75" height="30" fill="#fff" stroke="#000"/>
+    <text x="502" y="270" text-anchor="middle" font-size="10">App 1</text>
+    
+    <!-- Container 2 -->
+    <rect x="560" y="220" width="85" height="70" fill="#c3e6cb" stroke="#000"/>
+    <text x="602" y="240" text-anchor="middle" font-size="12">Container 2</text>
+    <rect x="565" y="250" width="75" height="30" fill="#fff" stroke="#000"/>
+    <text x="602" y="270" text-anchor="middle" font-size="10">App 2</text>
+    
+    <!-- Container 3 -->
+    <rect x="660" y="220" width="85" height="70" fill="#c3e6cb" stroke="#000"/>
+    <text x="702" y="240" text-anchor="middle" font-size="12">Container 3</text>
+    <rect x="665" y="250" width="75" height="30" fill="#fff" stroke="#000"/>
+    <text x="702" y="270" text-anchor="middle" font-size="10">App 3</text>
+    
+    <!-- Key Differences Labels -->
+    <text x="400" y="460" text-anchor="middle" font-size="14" font-weight="bold">Key Differences:</text>
+    <text x="400" y="480" text-anchor="middle" font-size="12">• VMs: Full OS per instance, more isolated, heavier</text>
+    <text x="400" y="495" text-anchor="middle" font-size="12">• Containers: Shared OS kernel, lightweight, faster</text>
+</svg>
